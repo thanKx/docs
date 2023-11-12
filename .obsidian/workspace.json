@@ -1,0 +1,147 @@
+{
+  "main": {
+    "id": "7be8a60df8b7cefd",
+    "type": "split",
+    "children": [
+      {
+        "id": "ca533e84b8b9eb3a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5a696d052b95fd09",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5eacd9df06542d7a",
+    "type": "split",
+    "children": [
+      {
+        "id": "43a4f62cbcaf4b59",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "24fe30cd35493d08",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "387b919e027c2523",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0d6bd4d841ddf6bb",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "f2a2557b5af42998",
+    "type": "split",
+    "children": [
+      {
+        "id": "431c0385b2d38872",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "22fc1bee9ad54edc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a3b4c6009d9892d6",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d8a7b5c58965bdd9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4898f06f4db378ca",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "5a696d052b95fd09",
+  "lastOpenFiles": [
+    "Prometheus/基础信息.md",
+    "Prometheus/简介和安装.md",
+    "Prometheus"
+  ]
+}

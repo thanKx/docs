@@ -1,0 +1,586 @@
+{
+	"info": {
+		"_postman_id": "9619462c-5cb9-4d80-af47-631414884768",
+		"name": "camunda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5028639"
+	},
+	"item": [
+		{
+			"name": "restapi",
+			"item": [
+				{
+					"name": "process definition",
+					"item": [
+						{
+							"name": "get list",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "启动流程（start instance）",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"variables\": {\n    \"starter\": {\n      \"value\": \"wangl\",\n      \"type\": \"String\"\n    }\n  },\n  \"businessKey\": \"{{$guid}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/process-definition/key/{{key}}/start",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"process-definition",
+										"key",
+										"{{key}}",
+										"start"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取流程图",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/process-definition/key/{{key}}/diagram",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"process-definition",
+										"key",
+										"{{key}}",
+										"diagram"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取图像",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "process instance",
+					"item": [
+						{
+							"name": "流程实例列表(get list)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/process-instance",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"process-instance"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "删除流程实例",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"variables\": {\n    \"agree\": {\n      \"value\": true\n    },\n    \"day\": {\n      \"value\": 12\n    },\n     \"flowId\": {\n      \"value\": \"Flow_back_first\"\n    }\n  },\n  \"withVariablesInReturn\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/process-instance/a9dd2c4d-2472-11ee-808b-6ea7e3ae97e5",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"process-instance",
+										"a9dd2c4d-2472-11ee-808b-6ea7e3ae97e5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "task",
+					"item": [
+						{
+							"name": "任务列表（get list）",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task?firstResult=0&maxResults=10",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task"
+									],
+									"query": [
+										{
+											"key": "firstResult",
+											"value": "0"
+										},
+										{
+											"key": "maxResults",
+											"value": "10"
+										},
+										{
+											"key": "assignee",
+											"value": "xieq",
+											"disabled": true
+										},
+										{
+											"key": "processInstanceId",
+											"value": "06b792fa-208f-11ee-a7d6-7a7a72c9131e",
+											"disabled": true
+										},
+										{
+											"key": "candidateGroup",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "设置委托人（Set Assignee）",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"userId\": \"xieq\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task/cc0a3032-1fb7-11ee-8c70-0e917d96c78e/assignee",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task",
+										"cc0a3032-1fb7-11ee-8c70-0e917d96c78e",
+										"assignee"
+									]
+								},
+								"description": "不会检查是否有委托人"
+							},
+							"response": []
+						},
+						{
+							"name": "宣称委托人（Claim）",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"userId\": \"wangl\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task/3e5b89c2-1fb2-11ee-8c70-0e917d96c78e/claim",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task",
+										"3e5b89c2-1fb2-11ee-8c70-0e917d96c78e",
+										"claim"
+									]
+								},
+								"description": "会检查是否有委托人，有且不一样就会报错\n```json\n{\n    \"type\": \"TaskAlreadyClaimedException\",\n    \"message\": \"Task '3e5b89c2-1fb2-11ee-8c70-0e917d96c78e' is already claimed by someone else.\",\n    \"code\": 0\n}\n```"
+							},
+							"response": []
+						},
+						{
+							"name": "完成任务（task complete）",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"variables\": {\n  },\n  \"withVariablesInReturn\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task/830bedbb-2473-11ee-808b-6ea7e3ae97e5",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task",
+										"830bedbb-2473-11ee-808b-6ea7e3ae97e5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "删除任务",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "task comment",
+					"item": [
+						{
+							"name": "创建（create）",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"message\": \"请领导批准\",\n  \"processInstanceId\": \"2f6b7f4e-1f9b-11ee-8c70-0e917d96c78e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task/c4cd0ce5-1fb8-11ee-8c70-0e917d96c78e/comment/create",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task",
+										"c4cd0ce5-1fb8-11ee-8c70-0e917d96c78e",
+										"comment",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取列表（get list）",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/task/c4cd0ce5-1fb8-11ee-8c70-0e917d96c78e/comment",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"task",
+										"c4cd0ce5-1fb8-11ee-8c70-0e917d96c78e",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "history process instance",
+					"item": [
+						{
+							"name": "流程实例列表(get list)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/history/process-instance",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"history",
+										"process-instance"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "删除流程实例(delete)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/history/process-instance/f7d05955-2154-11ee-a9af-c6e8d466ebf3",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"history",
+										"process-instance",
+										"f7d05955-2154-11ee-a9af-c6e8d466ebf3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "history task",
+					"item": [
+						{
+							"name": "历史任务列表",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/{{contextPath}}/history/task/processInstanceId/",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"{{contextPath}}",
+										"history",
+										"task",
+										"processInstanceId",
+										""
+									],
+									"query": [
+										{
+											"key": "processInstanceBusinessKey",
+											"value": "myBusinessKey",
+											"disabled": true
+										},
+										{
+											"key": "processDefinitionKey",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "custom api",
+			"item": [
+				{
+					"name": "发起流程",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/process-instance/key/MULTI_PROCESS/start",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"process-instance",
+								"key",
+								"MULTI_PROCESS",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "下一步任务",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/task/complete/93648a69-2474-11ee-808b-6ea7e3ae97e5",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"task",
+								"complete",
+								"93648a69-2474-11ee-808b-6ea7e3ae97e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "历史任务列表 Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/{{contextPath}}/history/task/processInstanceId/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"{{contextPath}}",
+								"history",
+								"task",
+								"processInstanceId",
+								""
+							],
+							"query": [
+								{
+									"key": "processInstanceBusinessKey",
+									"value": "myBusinessKey",
+									"disabled": true
+								},
+								{
+									"key": "processDefinitionKey",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJyb0Y2ajZkN0g0N294VklVOURUekNVUWZKWllkdXhxYVNEemlJSWotZDJRIn0.eyJleHAiOjE2ODk1ODUzODEsImlhdCI6MTY4OTU4MzU4MSwiYXV0aF90aW1lIjoxNjg5NTU0Mzc5LCJqdGkiOiI5OWY2YzFkZC01ZTE5LTRjZjktYTc1MS1jMWEwM2I2YjQxZGYiLCJpc3MiOiJodHRwOi8vMzYuMTUyLjI0OS4xNzg6ODUyMC9hdXRoL3JlYWxtcy9sYWJvcmF0b3J5X2RldiIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiNmQ0NjFiYy05ODA2LTQyZmEtODQ3Ni05MzA5NDQzMjRmYTciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJsYWJvcmF0b3J5LWZyb250Iiwibm9uY2UiOiJiYzRhMmRhOC04N2JjLTQ4MTAtOThmMS1iNzRkODhhMTNkMmQiLCJzZXNzaW9uX3N0YXRlIjoiMjc2MzVjMWUtYzYyNC00M2ZmLWE4NGUtODUxNDMwZGJkMTQ0IiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vMzYuMTUyLjI0OS4xNzg6ODg5MCIsImh0dHA6Ly9sb2NhbGhvc3Q6OTUzMCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJkZWZhdWx0LXJvbGVzLWxhYm9yYXRvcnlfZGV2IiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMjc2MzVjMWUtYzYyNC00M2ZmLWE4NGUtODUxNDMwZGJkMTQ0IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.MFQ8uxJbcQf1gFmLUsvBveFYUFbopBTZJxhyV_j7l9DfyRMRXkUSYsTbknTKHkcofSskdmgvLWujz33vbR-BY9UZc0u3sHNNuD6lOFjMfYRJ9FUXeHTx2EaAFCDydLzFo-jkFgZ6qZCpOkLauOMWtadW3yN-hSclWXDlcVM1JE6gYHJlB2ynajmaPLzbqZU6qLjpO3UbginnRzXA7M-Q4UummhNMSwAos1hEsskNliWXTasq4rtLUlfbV5iPuusXkf5CeiHo3tdqPD5MeVaCGDdgMxyqIkfjQwwracYQwqNVhGbVtqFVkfUE2ZA0nErpJTxDvvx4C-4uXWyH8XeWnA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
