@@ -1,12 +1,11 @@
 
+- [README](README.md)
+
 - Java
   - [基础知识](Java/基础知识.md)
 
 - Prometheus
   - [简介与安装](Prometheus/简介与安装.md)
-
-- [README](README.md)
-- [ footer](_footer.md)
 
 - Camunda
   - [基础知识](camunda/基础知识.md)

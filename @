@@ -10,7 +10,7 @@
 
 </head>
 <body>
-  <div id="app">努力加载中......</div>
+  <div id="app"></div>
   <script>
     window.$docsify = {
       name: 'thankx',
@@ -37,10 +37,12 @@
       sidebarDisplayLevel: 1,
       hideCode: {
 		scorll: false,
-		height: 200
+		height: 400
 	  }
     }
   </script>
+
+
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <!-- use the footer plugin latest version -->
