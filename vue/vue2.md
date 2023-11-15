@@ -1,266 +1,243 @@
-# 基础
+# Vue.js 基础知识整理
 
-## 事件
+## 事件处理
 
-```js
-@click.prevent=""  阻止默认
-@click.stop="" 阻止冒泡
-once 执行一次
-capture 捕获模式
-self 自身才能执行
-passive 立即执行
+### 常用事件修饰符
 
-可以连着写
-@click.prevent.stop 
+```
+javascriptCopy code
+@click.prevent=""  // 阻止默认行为
+@click.stop=""    // 阻止事件冒泡
+@click.prevent.stop // 阻止默认行为并阻止冒泡
+@click.once       // 事件只触发一次
+@click.capture    // 使用事件捕获模式
+@click.self       // 只有事件在该元素本身触发时才生效
+@click.passive    // 提高滚动性能的修饰符
 ```
 
-## 键盘监听
-```js
-@keydown 按下
-@keyup 松开
+### 键盘事件监听
 
-# 按键的编码获取
-function (event) {
-	console.log(event.keyCode)
-	console.log(event.key)
+```
+javascriptCopy code
+@keydown // 按键被按下时触发
+@keyup   // 按键被松开时触发
+
+// 获取按键的编码
+function(event) {
+  console.log(event.keyCode); // 旧的按键编码方式
+  console.log(event.key);     // 新的按键字符方式
 }
- 
 ```
+
 ## 计算属性
-```js
 
+```
+javascriptCopy code
 data: {
-	firstName: "张三"
-}
-// 里面都是计算属性 不是方法
-// 通过 插值法{{ name }} 使用
+  firstName: "张三"
+},
 computed: {
-	// 完整写法
-	name: {
-		get() {
-			// 这里的this是vm(vue model)
-			return this.firstName;	
-		},
-		// 里面一定要有属性改变才能驱使他改变
-		set(value) {
-			this.firstName = value
-		}
-	}
-	// 简写（没有set方法的时候）不是方法，是计算属性只是简单写法
-	name() {
-		return this.firstName
-	}
+  // 完整写法
+  name: {
+    get() {
+      return this.firstName; // this 指向 Vue 实例
+    },
+    set(value) {
+      this.firstName = value;
+    }
+  },
+  // 简写方式（没有 set 方法）
+  name() {
+    return this.firstName;
+  }
 }
 ```
+
 ## 监视属性
-```js
 
-watch：{
-	info：{ 
-		immediate: true, // 立刻改变 
-		handler(oldValue,newValue){
-		},
-		deep: true // 监视多级所有属性的变化 vue的watch不能监测内部值的改变
-	}
+```
+javascriptCopy code
+watch: {
+  info: { 
+    immediate: true, // 立即触发
+    handler(oldValue, newValue) {
+      // 处理函数
+    },
+    deep: true // 深度监听
+  }
 }
 ```
 
-# 指令
+## 自定义指令
 
-- 自定义一个v-big指令，绑定的值放大10倍
-- 自定义一个v-fbind，获取值绑定值，且获取焦点
-
-```javascript
-new vue({
-	directives:{
-		// big 什么时候掉用？1 指令与元素绑定成功时。2 指定所以在的模版重新解析时。
-		big(element,binding){
-			element.innerText = binding.value * 10
-		}
-		fbind:{
-			// 绑定时
-			bind(element,binding) {
-				element.value = binding.value
-			},
-			// 插入时
-			inserted(element,binding) {
-				element.foucus
-			},
-			// 更新时
-			update(element,binding) {
-				element.value = binding.value
-				element.foucus
-			}
-		}
-	}
-})
+### 示例
 
 ```
+javascriptCopy code
+new Vue({
+  directives: {
+    big(element, binding) {
+      element.innerText = binding.value * 10;
+    },
+    fbind: {
+      bind(element, binding) {
+        element.value = binding.value;
+      },
+      inserted(element, binding) {
+        element.focus();
+      },
+      update(element, binding) {
+        element.value = binding.value;
+        element.focus();
+      }
+    }
+  }
+})
+```
 
-# 生命周期
+## Vue 生命周期
 
-## 流程图
+### 生命周期流程图
 
 ![vue生命周期](./vue生命周期.png)
 
-# 组件
+## 组件（VC）
 
-简称 VC
+### 示例
 
-```javaScript
-const school = vue.extend({
-	name: "school",
-	template: "<div>{{name}}</div>",
-	data(){
-		return{
-			name: "学校名称"
-		}
-	}
-})
+```
+javascriptCopy code
+const school = Vue.extend({
+  name: "school",
+  template: "<div>{{name}}</div>",
+  data() {
+    return {
+      name: "学校名称"
+    }
+  }
+});
 
-const hello = vue.extend({
-	name: "school",
-	template: "<div>{{name}}</div>",
-	data(){
-		return{
-			name: "学校名称"
-		}
-	}
-})
+const hello = Vue.extend({
+  name: "hello",
+  template: "<div>{{name}}</div>",
+  data() {
+    return {
+      name: "问候语"
+    }
+  }
+});
 
-// VM
-new vue({
-	components: {}
-})
+new Vue({
+  components: { school, hello }
+});
 ```
 
-VueComponent 每次都返回一个全新的VueComponent
+### 组件与实例
 
-VM 管理的VC
+- `VueComponent` 每次返回一个全新的组件实例。
+- `VM`（Vue 实例）管理 VC（Vue 组件）。
+- `VC` 中的 `this` 指向自己。
+- `VM` 中的 `this` 指向 Vue 实例自身。
 
-VC 里面的this都是指自己 （VC）
-VM 里面的this都是指自己（VM）
+## 内置关系
 
-# 内置关系
+### JavaScript 原型链示例
 
-这是js基础
-
-`VueComponent.prototype.__proto__ === Vue.protptype `
-
-```javascript
-function Demo(){
-	this.a = 1
-	this.b = 2
+```
+javascriptCopy code
+function Demo() {
+  this.a = 1;
+  this.b = 2;
 }
 
-const d = new Demo()
+const d = new Demo();
 
-console.log(Demo.prototype) // 显式原型属性
-console.log(d.__proto__) // 隐式原型属性
+console.log(Demo.prototype); // 显式原型属性
+console.log(d.__proto__);    // 隐式原型属性
 
-console.log(Demo.prototype === d.__proto__) // true
+console.log(Demo.prototype === d.__proto__); // true
 
-// 程序猿通过显式原型属性操作原型对象，追加一个x属性，值为99
-Demo.prototype.x = 99
-
-console.log()
-
+Demo.prototype.x = 99; // 通过原型添加属性
 ```
 
+## 单文件组件
 
+### 概述
 
-# 单文件组件
+- `.vue` 文件需要转换成 JavaScript、HTML 和 CSS。
+- 转换工具包括 Webpack 和 Vue CLI。
 
-## 简介
+### 示例
 
-`xxx.vue` 需要经过加工，变成js,html,css
-
-## 方式
-
-- webpack
-- 脚手架
-
-## 写法
-
+```
 School.vue
-
-```vue
+vueCopy code
 <template>
-	<div>
-		
-	</div>
+  <div></div>
 </template>
 
 <script>
+export default {
+  name: "School"
+  // 组件逻辑
+};
 </script>
 
 <style>
+/* 样式 */
 </style>
-```
-
 main.js
-
-```javascript
-import Vue form 'Vue' // 这个是一个运行时的Vue，不存在模版解析器
-import App form './App.vue'
+javascriptCopy code
+import Vue from 'Vue';
+import App from './App.vue';
 
 new Vue({
-	render(createElement){
-		return createElement(App)
-	}
-	render: createElement => createElement(App)
-	render: h => h(App)
-	components: {App}
-})
-```
-
+  render: h => h(App)
+}).$mount('#app');
 index.html
-
-```html
+htmlCopy code
+<!DOCTYPE html>
 <html>
-	<body>
-		<script type="module" src="/src/main.ts"></script>
-	</body>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
 ```
 
-# props
+## Props
 
-> 让组件传入外部的值
+### 用法
 
-``` javascript
-	// 简单写法
-	props: ["name","sex","age"]
-
-	// 接受限制列席
-	props: {
-		name: String,
-		sex: String,
-		age: Number
-	}
-	
-	// 默认值+必要
-	props: {
-    name: {
-      type: String,
-      required: true
-      default: "张三"
-    }
-  }
-
-	// props的值不能被修改
-	// 如果要修改，可以放到data里面
-	data() {
-    return {
-      myAge: this.age
-    }
-  }
-	
+```
+javascriptCopy code
+props: {
+  name: String,
+  sex: String,
+  age: Number
+}
 ```
 
+### 默认值和验证
 
+```
+javascriptCopy code
+props: {
+  name: {
+    type: String,
+    required: true,
+    default: "张三"
+  }
+}
+```
 
-# mixin
+### 注意事项
 
-67课时
+- `props` 的值不应直接修改。
+- 若要修改，可以先复制到 `data` 中。
 
+## Mixin
+
+### 用途
+
+Mixin 用于在多个组件间共享功能

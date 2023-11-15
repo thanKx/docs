@@ -11,6 +11,7 @@
 - Camunda
   - [基础知识](camunda/基础知识.md)
   - [安装和部署](camunda/安装和部署.md)
+  - [常用功能](camunda/常用功能.md)
 
 - Linux
   - [Ssh](linux/ssh.md)

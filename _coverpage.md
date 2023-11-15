@@ -5,3 +5,5 @@
 [联系作者](https://github.com/docsifyjs/docsify/)
 [开启阅读](README.md)
 
+
+![](_media/coverbg.png)
