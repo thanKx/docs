@@ -27,5 +27,5 @@
 - Vue
   - [Vue2](vue/vue2.md)
 
-- 工具
-  - [tmux](工具/tmux.md)
+- Tool
+  - [tmux](tool/tmux.md)
