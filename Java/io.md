@@ -4,8 +4,6 @@
 
 IO即为`input/output`，输入和输出。数据输入到计算机内存的过程即输入，反之输出到外部存储（比如数据库，文件，远程主机）的过程即输入。数据传输过程类似于水流，因此称为IO流。IO流在Java中分为输入流和输出流，而根据数据的处理方式又分为字节流和字符流。
 
-
-
 Java IO流的40多个类都是从如下4个抽象类基类中派生出来的。
 
 - `InputStream/Reader`：所有的输入流的基类，前者是字节输入流，后者是字符输入流。
@@ -100,11 +98,7 @@ try (InputStream is = Files.newInputStream(Paths.get("input.txt"))){
 
 因此，I/O 流就干脆提供了一个直接操作字符的接口，方便我们平时对字符进行流操作。
 
-
-
 > ❗ 如果音频文件、图片等媒体文件用字节流比较好，如果涉及到字符的话使用字符流比较好。
-
-
 
 字符流默认采用的是 `Unicode` 编码，我们可以通过构造方法自定义编码。
 
@@ -113,8 +107,6 @@ try (InputStream is = Files.newInputStream(Paths.get("input.txt"))){
 - `utf8` :英文占 1 字节，中文占 3 字节，
 - `unicode`：任何字符都占 2 个字节，
 - `gbk`：英文占 1 字节，中文占 2 字节。
-
-
 
 ### Reader
 
@@ -140,4 +132,3 @@ public class InputStreamReader extends Reader {
 public class FileReader extends InputStreamReader {
 }
 ```
-
