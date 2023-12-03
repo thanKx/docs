@@ -29,26 +29,31 @@ man ssh
 当使用SSH命令时，以下是几种常用的参数组合示例：
 
 1. 使用用户名和密码登录远程服务器：
+
 ```shell
 ssh username@hostname
 ```
 
 2. 指定端口号登录远程服务器：
+
 ```shell
 ssh -p 2222 username@hostname
 ```
 
 3. 使用私钥文件进行身份验证登录：
+
 ```shell
 ssh -i /path/to/private_key username@hostname
 ```
 
 4. 禁用主机密钥检查，并设置连接超时：
+
 ```shell
 ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 username@hostname
 ```
 
 5. 启用X11转发，并登录远程服务器：
+
 ```shell
 ssh -X username@hostname
 ```
@@ -117,6 +122,7 @@ chmod +x script.sh
 ```bash
 ./script.sh -h 192.168.0.1 -u myuser -p mypassword
 ```
+
 ### Sshpass安装
 
 下面是在不同操作系统上下载和安装 `sshpass` 工具的方法：
@@ -124,6 +130,7 @@ chmod +x script.sh
 **在Mac上安装 `sshpass`**：
 
 1. 使用Homebrew包管理器安装 `sshpass`：
+
    ```shell
    brew install hudochenkov/sshpass/sshpass
    ```
@@ -131,11 +138,13 @@ chmod +x script.sh
 **在Linux上安装 `sshpass`**：
 
 1. Debian/Ubuntu：
+
    ```shell
    sudo apt-get install sshpass
    ```
 
 2. CentOS/Fedora/RHEL：
+
    ```shell
    sudo yum install sshpass
    ```
@@ -146,11 +155,13 @@ chmod +x script.sh
    下载链接：[https://cygwin.com/install.html](https://cygwin.com/install.html)
 
 2. 下载 `sshpass` 源代码：
+
    ```shell
    wget https://sourceforge.net/projects/sshpass/files/latest/download/sshpass-1.09.tar.gz
    ```
 
 3. 解压并编译 `sshpass`：
+
    ```shell
    tar -xvf sshpass-1.09.tar.gz
    cd sshpass-1.09
@@ -170,35 +181,43 @@ chmod +x script.sh
 1. 在本地计算机上生成SSH密钥对：
    - 打开终端或命令行窗口。
    - 运行以下命令生成RSA密钥对：
+
      ```shell
      ssh-keygen -t rsa
      ```
+
    - 根据提示，选择密钥文件的保存位置和可选的密码（可留空，留空表示无密码）。
    - 这将生成两个文件：`id_rsa`（私钥）和 `id_rsa.pub`（公钥）。
 
 2. 登录到目标服务器：
    - 打开终端或命令行窗口。
    - 运行以下命令以SSH方式登录到目标服务器：
+
      ```shell
      ssh username@hostname
      ```
+
    - 替换 `username` 和 `hostname` 为目标服务器的用户名和主机名或IP地址。
    - 输入目标服务器的密码以完成登录。
 
 3. 将本地计算机上的公钥复制到目标服务器：
    - 在目标服务器的终端会话中，运行以下命令将本地计算机上的公钥追加到目标服务器的 `~/.ssh/authorized_keys` 文件中：
+
      ```shell
      cat >> ~/.ssh/authorized_keys
      ```
+
    - 此命令将进入追加模式并等待输入。
    - 打开本地计算机上的 `id_rsa.pub` 文件，将其中的内容复制。
    - 在目标服务器的终端会话中，粘贴公钥内容，并按下 `Ctrl + D` 键保存并退出。
 
 4. 验证公钥是否成功添加到目标服务器：
    - 在本地计算机上，尝试使用密钥进行SSH登录到目标服务器：
+
      ```shell
      ssh username@hostname
      ```
+
    - 如果公钥配置正确，将无需输入密码，并且你将通过密钥进行身份验证并成功登录到目标服务器。
 
 以上步骤中，第3步是将本地计算机上的公钥内容追加到目标服务器的 `~/.ssh/authorized_keys` 文件中。这样，当你使用SSH登录时，服务器将使用密钥进行身份验证。
@@ -210,15 +229,18 @@ chmod +x script.sh
 1. 启动 `ssh-agent`：
    - 打开终端或命令行窗口。
    - 运行以下命令来启动 `ssh-agent`：
+
      ```shell
      eval "$(ssh-agent -s)"
      ```
 
 2. 添加私钥到 `ssh-agent`：
    - 运行以下命令来将私钥添加到 `ssh-agent`：
+
      ```shell
      ssh-add /path/to/private_key
      ```
+
    - 替换 `/path/to/private_key` 为你的私钥文件的路径。
    - 输入你设置的密钥密码进行确认。
 
@@ -229,6 +251,7 @@ chmod +x script.sh
 4. 使用SSH无需手动输入密码：
    - 现在，当你使用SSH连接到远程服务器时，`ssh-agent` 会自动提供私钥密码，无需手动输入密码。
    - 例如，运行以下命令进行SSH登录：
+
      ```shell
      ssh username@hostname
      ```
@@ -240,28 +263,31 @@ chmod +x script.sh
 1. 打开终端或命令行窗口。
 
 2. 编辑SSH配置文件（如果不存在，则创建它）：
+
    ```shell
    vi ~/.ssh/config
    ```
 
 3. 在配置文件中，添加主机配置信息。以下是一个示例：
-   ```
-   Host myhost
+
+   ```s
+      Host myhost
        HostName 192.168.0.1
        User username
        Port 22
        IdentityFile /path/to/private_key
    ```
-   
+
    - 在上面的示例中，`myhost` 是你为主机设置的别名，可以自定义。
    - `HostName` 指定主机的 IP 地址或主机名。
    - `User` 指定登录主机的用户名。
    - `Port` 指定主机的 SSH 端口号。
    - `IdentityFile` 指定私钥文件的路径。
-   
+
 4. 保存并关闭文件。
 
 5. 现在，你可以直接使用 `ssh hostname` 登录目标主机，其中 `hostname` 是你在配置文件中设置的别名。例如：
+
    ```shell
    ssh myhost
    ```
