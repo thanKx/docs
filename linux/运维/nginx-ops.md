@@ -39,6 +39,14 @@ firewall-cmd --reload
 
 4、开机自启动nginx
 
+创建项目文件
+
+```bash
+vim /lib/systemd/system/nginx.service
+```
+
+填写下面内容填入（注意nginx安装路径）
+
 ```bash
 [Unit]
 Description=nginx
@@ -54,3 +62,7 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 ```
+
+5 问题
+
+SSL配置测试不同，很有可能是因为`--with-http_ssl_module`参数没有配置
