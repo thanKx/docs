@@ -1,9 +1,7 @@
-# thanks's docs
-
-> 这里是记录一些自己学习知识文档.
-
 # 简介
-
+>
+> 这里是记录一些自己学习知识文档.
+>
 # 计算机
 
 ## 开发
@@ -16,7 +14,9 @@
 
 ### mysql
 
-- [mysql安装](/linux/运维/mysql_install.md)
+- [mysql运维](/linux/运维/mysql-ops.md)
+
+- [nginx运维](/linux/运维/nginx-ops.md)
 
 # 其他
 
